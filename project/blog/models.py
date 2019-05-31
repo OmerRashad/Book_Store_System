@@ -35,6 +35,9 @@ class Post(models.Model):
     date        = models.DateField(default=datetime.date.today)
     content     = models.TextField()
 
+    def __str__(self):
+        return self.title
+
 class AccountBook(models.Model):
     bookid      = models.ForeignKey(Book , on_delete= models.CASCADE)
     Accountid   = models.ForeignKey(Account , on_delete=models.CASCADE)
