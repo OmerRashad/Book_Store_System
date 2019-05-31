@@ -7,7 +7,7 @@ def home(request):
     context = {
         'posts' : Role.objects.all()
     }
-    return render(request,'blog/home.html', context   )
+    return render(request,'blog/home.html', context)
 
 def about(request):
     return render(request,'blog/about.html' , {'title': 'About'} )

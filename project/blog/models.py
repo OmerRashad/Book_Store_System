@@ -4,6 +4,8 @@ import datetime
 class Role(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
 
 class Account(models.Model):
     id          = models.AutoField(primary_key=True)
@@ -16,6 +18,8 @@ class Account(models.Model):
     dob         = models.DateField(default=datetime.date.today)
     address     = models.TextField(max_length=150)
     profilepic  = models.TextField(max_length=250)
+
+
 
 
 class Book(models.Model):
