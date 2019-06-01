@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from blog.models import Account
 from blog.models import Role
 
+
 def home(request):
     context = {
-        'posts' : Role.objects.all()
+        'posts' : Role.objects.all(),'accounts': Account.objects.all()
     }
     return render(request,'blog/home.html', context)
 

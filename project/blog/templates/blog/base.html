@@ -1,4 +1,5 @@
 {% load static %}
+
 <html>
 <head>
     <!-- Required meta tags -->
@@ -8,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/main.css' %}">
 
     {% if title %}
         <title>Django Blog  -{{ title }}</title>
@@ -33,8 +34,13 @@
                     </div>
                   <!-- Navbar Right Side -->
                 <div class="navbar-nav">
-                  <a class="nav-item nav-link" href="#">Login</a>
-                  <a class="nav-item nav-link" href="#">Register</a>
+                    {% if request.session.is_authenticated %}
+                        <a class="nav-item nav-link" href="{% url 'profile' %}">{{request.session.name}}</a>
+                        <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                    {% else %}
+                        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-item nav-link" href="{% url 'signup' %}">Register</a>
+                    {% endif %}
                 </div>
               </div>
             </div>

@@ -3,17 +3,29 @@
 #CONTENT
 
     {% block content %}
-        {% for post in posts %}
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">{{ post.id }}</a>
-              <small class="text-muted">{{ post.name}}</small>
-            </div>
-
-          </div>
-        </article>
-        {% endfor %}
+        {% if request.session.type == 2 %}
+            {% for post in posts %}
+                <article class="media content-section">
+                  <div class="media-body">
+                    <div class="article-metadata">
+                      <a class="mr-2" href="#">{{ post.id }}</a>
+                      <small class="text-muted">{{ post.name}}</small>
+                    </div>
+                  </div>
+                </article>
+            {% endfor %}
+        {% elif request.session.type == 3 %}
+            {% for account in accounts %}
+                <article class="media content-section">
+                  <div class="media-body">
+                    <div class="article-metadata">
+                      <a class="mr-2" href="#">{{ account.id }}</a>
+                      <small class="text-muted">{{ account.name}}</small>
+                    </div>
+                  </div>
+                </article>
+            {% endfor %}
+        {%endif%}
     {%endblock content%}
 
 
