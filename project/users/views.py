@@ -7,6 +7,7 @@ from blog.models import Account
 from users.models import Login
 
 
+
 def signup(request):
     if request.method == 'POST':
         form = AuthorForm(request.POST)
@@ -32,13 +33,13 @@ def login(request):
             password = request.POST.get("password")
             try:
                 account = Account.objects.get(username=username,password = password)
-
+                path = request.get_full_path()
                 if account:
-                    request.session['type'] = 2
+                    request.session['type'] = account.roleid.id
                     request.session['name'] = account.name
-                    is_authenticated(request,username)
-                    return redirect('blog-home')
-
+                    if path == 'login/':
+                        is_authenticated(request,username)
+                        return redirect('blog-home')
             except Exception:
                 return redirect('login')
     else:
@@ -62,6 +63,7 @@ def is_authenticated(request,username):
  #       get_user_data(request,username)
     else:
         request.session["is_authenticated"] = False
+
 
 
 '''def get_user_data(request,username):
