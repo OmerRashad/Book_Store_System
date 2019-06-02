@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+from django.forms import ModelForm
 
 class Role(models.Model):
     id = models.AutoField(primary_key=True)
@@ -41,3 +42,10 @@ class Post(models.Model):
 class AccountBook(models.Model):
     bookid      = models.ForeignKey(Book , on_delete= models.CASCADE)
     Accountid   = models.ForeignKey(Account , on_delete=models.CASCADE)
+
+
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ['content']
+

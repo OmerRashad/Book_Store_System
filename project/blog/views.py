@@ -1,10 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from blog.models import Account
 from blog.models import Role
 from django.views.generic import ListView
 from .models import Post
+from blog.models import PostForm
 
+def post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('blog-home')
+    else:
+        form = PostForm()
+    return render(request, 'users/signup.html', {'form': form})
 
 def home(request):
     context = {
