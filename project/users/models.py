@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm , User, UsernameField
 
 
-class AuthorForm(ModelForm):
+class UserForm(ModelForm):
     class Meta:
         model = Account
         fields = ['name', 'username', 'email','roleid','password','phone','dob','address','profilepic']
