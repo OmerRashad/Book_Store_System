@@ -1,10 +1,122 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit">Sign up</button>
-  </form>
+  <!--<h2>Sign up</h2>-->
+  <!--<form method="post">-->
+    <!--{% csrf_token %}-->
+    <!--{{ form|crispy }} -->
+    <!--<button type="submit">Sign up</button>-->
+  <!--</form>-->
+
+
+
+
+    <div class="site-section bg-light" id="contact-section">
+
+      <div class="container">
+
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+              <h3 class="section-sub-title"> Sign Up </h3>
+              <h2 class="section-title mb-3">Join Us !</h2>
+            </div>
+          </div>
+
+        <div class="row justify-content-center">
+
+          <div class="col-md-7 mb-5">
+
+
+            <form method="post" action="#" class="p-5 bg-white">
+              {% csrf_token %}
+              <!--fields = ['name', 'username', 'email','roleid','password','phone','dob','address','profilepic'] -->
+              <h2 class="h4 text-black mb-5">Form</h2>
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="id_name" >First Name</label>
+                  <input type="text" name="name"  required id="id_name" class="form-control rounded-0">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="id_username" >User Name</label>
+                  <input type="text" name="username" required id="id_username" class="form-control rounded-0">
+                </div>
+              </div>
+
+
+              <div class="row form-group">
+
+                <div class="col-md-12">
+                  <label class="text-black" for="id_email" >Email</label>
+                  <input type="email" name="email" required id="id_email" class="form-control rounded-0">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="id_password" >Password</label>
+                  <input type="password" name="password" required id="id_password"  class="form-control rounded-0">
+              </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="id_phone" >Phone Number</label>
+                  <input type="number" name="phone" required id="id_phone"  class="form-control rounded-0">
+              </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="id_dob" >Date of Birth</label>
+                  <input type="date" name="dob" required id="id_dob"  class="form-control rounded-0">
+              </div>
+              </div>
+
+               <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="id_address" >Address</label>
+                  <input type="text" name="address" required id="id_address"  class="form-control rounded-0">
+              </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="id_profilepic" >Profile Pic</label>
+                  <input type="text" name="profilepic" required id="id_profilepic"  class="form-control rounded-0">
+              </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+
+                   <label>Select Type</label>
+                   <select  name="roleid" required id = "id_roleid">
+                     {% for role in form.roleid %}
+                     <option>{{role}}</option>
+                     {%endfor%}
+                   </select>
+
+              </div>
+              </div>
+
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="Sign Up" class="btn btn-black rounded-0 py-3 px-4">
+                </div>
+              </div>
+
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
 {% endblock %}

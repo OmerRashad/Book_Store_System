@@ -1,6 +1,6 @@
 from django.core import serializers
 from django.shortcuts import render, redirect
-from users.models import AuthorForm
+from users.models import UserForm
 
 from blog.models import Account
 
@@ -10,7 +10,7 @@ from users.models import Login
 
 def signup(request):
     if request.method == 'POST':
-        form = AuthorForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             data = request.POST.get("roleid")
             form.save()
@@ -21,7 +21,7 @@ def signup(request):
                 return redirect('omer')
 
     else:
-        form = AuthorForm()
+        form = UserForm()
     return render(request, 'users/signup.html', {'form': form})
 
 
