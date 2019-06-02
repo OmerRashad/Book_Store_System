@@ -70,3 +70,4 @@ def is_authenticated(request,username):
     serialized_obj = serializers.serialize('json', [account, ])
     request.session["user_data"] = serialized_obj
 '''
+
