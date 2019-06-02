@@ -37,9 +37,8 @@ def login(request):
                 if account:
                     request.session['type'] = account.roleid.id
                     request.session['name'] = account.name
-                    if path == 'login/':
-                        is_authenticated(request,username)
-                        return redirect('blog-home')
+                    is_authenticated(request,username)
+                    return redirect('blog-home')
             except Exception:
                 return redirect('login')
     else:
@@ -53,7 +52,7 @@ def profile(request):
 
 def logout(request):
     is_authenticated(request,username="")
-    return render(request,'users/logout.html')
+    return render(request,'blog/home.html')
 
 
 def is_authenticated(request,username):
