@@ -6,9 +6,10 @@ from django.views.generic import ListView
 from .models import Post
 
 
+
 def home(request):
     context = {
-        'posts' : Post
+        'posts' : Role.objects.all(),'accounts': Account.objects.all()
     }
     return render(request,'blog/home.html', context)
 
