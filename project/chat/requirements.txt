@@ -1,0 +1,7 @@
+# Your app requirements.
+-r ../requirements_test.txt
+
+-e ../
+Django==1.10.8
+django-debug-toolbar==1.6
+packaging==16.8
