@@ -29,6 +29,7 @@ def login(request):
     if request.method == 'POST':
         form = Login(request.POST)
         if form.is_valid():
+            request.session['user_id'] = Account.objects.get(email=username).id
             username = request.POST.get("username")
             password = request.POST.get("password")
             try:
@@ -52,7 +53,7 @@ def profile(request):
 
 def logout(request):
     is_authenticated(request,username="")
-    return render(request,'reader/signup.html')
+    return render(request,'blog/home.html')
 
 
 def viewHome(request):

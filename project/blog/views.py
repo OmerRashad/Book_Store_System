@@ -34,11 +34,9 @@ class PostCreateView(CreateView):
     fields = ['title', 'content']
 
     def form_valid(self,form):
-        form.instance.author = self.request.user
+        form.instance.author = self.request.session.user_id
         return super().form_valid(form)
 
-def viewPosts(request):
-    return render(request, 'blog/blogPosts.html')
 
 def about(request):
     return render(request,'blog/about.html' , {'title': 'About'} )
