@@ -17,8 +17,13 @@ from django.contrib import admin
 from django.urls import path , include
 from users import views as user_views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/',user_views.signup, name='signup'),
-    path('', include('blog.urls') ),
+    path('profile/', user_views.profile, name='profile'),
+    path('login/',user_views.login,name = 'login'),
+    path('logout/',user_views.logout,name = 'logout'),
+    path('blog/', include('blog.urls') ),
+    path('home/', user_views.viewHome, name='blog-home'),
 ]

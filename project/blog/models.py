@@ -2,13 +2,16 @@ from django.db import models
 import datetime
 from django.forms import ModelForm
 
+
 class Role(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     def __str__(self):
         return self.name
 
+
 class Account(models.Model):
+    is_omer = ''
     id          = models.AutoField(primary_key=True)
     name        = models.CharField(max_length=150)
     username    = models.CharField(max_length=100)
@@ -19,8 +22,6 @@ class Account(models.Model):
     dob         = models.DateField(default=datetime.date.today)
     address     = models.TextField(max_length=150)
     profilepic  = models.TextField(max_length=250)
-
-
 
 
 class Book(models.Model):
@@ -36,16 +37,14 @@ class Post(models.Model):
     date        = models.DateField(default=datetime.date.today)
     content     = models.TextField()
 
-    def __str__(self):
-        return self.title
 
 class AccountBook(models.Model):
     bookid      = models.ForeignKey(Book , on_delete= models.CASCADE)
     Accountid   = models.ForeignKey(Account , on_delete=models.CASCADE)
 
 
+
 class PostForm(ModelForm):
     class Meta:
         model = Post
         fields = ['content']
-
