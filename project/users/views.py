@@ -52,7 +52,7 @@ def profile(request):
 
 def logout(request):
     is_authenticated(request,username="")
-    return render(request,'reader/signup.html')
+    return render(request,'blog/home.html')
 
 
 def viewHome(request):
