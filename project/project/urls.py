@@ -24,5 +24,6 @@ urlpatterns = [
     path('profile/', user_views.profile, name='profile'),
     path('login/',user_views.login,name = 'login'),
     path('logout/',user_views.logout,name = 'logout'),
-    path('', include('blog.urls') ),
+    path('blog/', include('blog.urls') ),
+    path('home/', user_views.viewHome, name='blog-home'),
 ]

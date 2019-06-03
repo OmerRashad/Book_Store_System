@@ -40,7 +40,13 @@
                         <li><a href="{% url 'blog-home' %}" class="nav-link">Home</a></li>
                         <li><a href="{% url 'blog-about' %}" class="nav-link">About Us</a></li>
                         {% if request.session.is_authenticated %}
+
                     <li><a class="nav-item nav-link" href="{% url 'profile' %}">{{request.session.name}}</a></li>
+                        {% if request.session.type == 2  %}
+                         <a href="{% url 'create-post' %}">Add Post</a>
+                        {% elif request.session.type == 3 %}
+                        <a href="{% url 'view-posts' %}">view Posts</a>
+                        {% endif %}
                         <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
                         <li><a href="{% url 'signup' %}" class="nav-link">Register</a></li>

@@ -18,7 +18,7 @@ def signup(request):
             if data == "2":
                 return redirect('blog-home')
             if data == "3":
-                return redirect('omer')
+                return redirect('blog-home')
 
     else:
         form = UserForm()
@@ -54,6 +54,9 @@ def logout(request):
     is_authenticated(request,username="")
     return render(request,'reader/signup.html')
 
+
+def viewHome(request):
+    return render(request,'blog/home.html')
 
 def is_authenticated(request,username):
     if username:
