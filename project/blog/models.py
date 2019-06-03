@@ -29,7 +29,6 @@ class Book(models.Model):
     Author      = models.CharField(max_length=100)
     Dop         = models.TextField(max_length=100)
     id          = models.IntegerField(primary_key=True)
-    
 
 
 class Post(models.Model):
