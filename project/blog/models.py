@@ -29,6 +29,7 @@ class Book(models.Model):
     Author      = models.CharField(max_length=100)
     Dop         = models.TextField(max_length=100)
     id          = models.IntegerField(primary_key=True)
+    
 
 
 class Post(models.Model):
@@ -36,6 +37,7 @@ class Post(models.Model):
     title       = models.TextField()
     date        = models.DateField(default=datetime.date.today)
     content     = models.TextField()
+    user_id     = models.ForeignKey(Account, on_delete=models.CASCADE)
 
 
 class AccountBook(models.Model):
