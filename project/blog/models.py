@@ -1,6 +1,8 @@
 from django.db import models
 import datetime
 from django.forms import ModelForm
+from django.utils import timezone
+from django.urls import reverse
 
 
 class Role(models.Model):
@@ -36,9 +38,12 @@ class Book(models.Model):
 class Post(models.Model):
     id          = models.IntegerField(primary_key=True)
     title       = models.TextField()
-    date        = models.DateField(default=datetime.date.today)
+    date        = models.DateTimeField(default=timezone.now)
     content     = models.TextField()
     user_id     = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
 
 
 class AccountBook(models.Model):

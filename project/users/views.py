@@ -31,6 +31,7 @@ def login(request):
         if form.is_valid():
             username = request.POST.get("username")
             password = request.POST.get("password")
+            request.session['user_id'] = Account.objects.get(email=username).id
             try:
                 account = Account.objects.get(username=username,password = password)
                 path = request.get_full_path()
