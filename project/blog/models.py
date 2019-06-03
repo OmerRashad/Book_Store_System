@@ -22,6 +22,8 @@ class Account(models.Model):
     dob         = models.DateField(default=datetime.date.today)
     address     = models.TextField(max_length=150)
     profilepic  = models.TextField(max_length=250)
+    def __str__(self):
+        return self.name
 
 
 class Book(models.Model):
