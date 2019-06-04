@@ -2,6 +2,10 @@ from django.contrib.auth.models import User
 from django.core import serializers
 from django.shortcuts import render, redirect
 from users.models import UserForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate,login
+from django.contrib import messages
+
 
 from blog.models import Account
 
@@ -26,26 +30,47 @@ def signup(request):
     return render(request, 'users/signup.html', {'form': form})
 
 
-def login(request):
+# def login(request):
+#     if request.method == 'POST':
+#         form = Login(request.POST)
+#         if form.is_valid():
+#             username = request.POST.get("username")
+#             password = request.POST.get("password")
+#             try:
+#                 account = Account.objects.get(username = username)
+#                 path = request.get_full_path()
+#                 if account:
+#                     # request.session['type'] = request.roleid.id
+#                     # request.session['name'] = request.name
+#                     # request.session['user_id'] = request.id
+#                     is_authenticated(request,username)
+#                     return redirect('blog-home')
+#             except Exception:
+#                 return redirect('login')
+#     else:
+#         form = Login()
+#     return render(request, 'users/login.html', {'form': form})
+
+def login_request(request):
     if request.method == 'POST':
-        form = Login(request.POST)
+        form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
-            username = request.POST.get("username")
-            password = request.POST.get("password")
-            try:
-                account = Account.objects.get(username = username)
-                path = request.get_full_path()
-                if account:
-                    # request.session['type'] = request.roleid.id
-                    # request.session['name'] = request.name
-                    # request.session['user_id'] = request.id
-                    is_authenticated(request,username)
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    messages.info(request, f"You are now logged in as {username}")
                     return redirect('blog-home')
-            except Exception:
-                return redirect('login')
-    else:
-        form = Login()
-    return render(request, 'users/login.html', {'form': form})
+            else:
+                messages.error(request, "Invalid username or password.")
+        else:
+            messages.error(request, "Invalid username or password.")
+    form = AuthenticationForm()
+    return render(request = request,
+                    template_name = "users/login.html",
+                    context={"form":form})
 
 
 def profile(request):

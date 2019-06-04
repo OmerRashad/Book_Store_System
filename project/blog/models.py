@@ -17,7 +17,7 @@ class Role(models.Model):
 
 class Account(AbstractUser):
     id          = models.AutoField(primary_key=True )
-    roleid      = models.ForeignKey(Role, on_delete= models.CASCADE,blank=True)
+    roleid      = models.ForeignKey(Role, on_delete= models.CASCADE,blank=True,null = True)
     dob         = models.DateField(default=datetime.date.today)
     address     = models.TextField(max_length=150,null=True)
     profilepic  = models.TextField(max_length=250,null=True)

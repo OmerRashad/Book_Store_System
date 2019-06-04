@@ -31,6 +31,7 @@ class PostListView(ListView):
 
 class PostCreateView(CreateView):
     model = Posts
+    template_name = 'blog/post_form.html'
     fields = ['title', 'content']
     def form_valid(self,form):
         form.instance.name = self.request.user

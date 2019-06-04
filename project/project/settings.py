@@ -126,4 +126,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'blog-home'
 
-AUTH_USER_MODEL = 'blog.Account' # new
+AUTH_USER_MODEL = 'blog.Account'
+
+LOGIN_URL = 'user/login'

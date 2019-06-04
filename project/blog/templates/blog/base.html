@@ -40,12 +40,12 @@
                         <li><a href="{% url 'blog-home' %}" class="nav-link">Home</a></li>
                         <li><a href="{% url 'blog-about' %}" class="nav-link">About Us</a></li>
 
-                        {% if request.session.is_authenticated %}
+                        {% if user.is_authenticated or user.is_active%}
 
-                    <li><a class="nav-item nav-link" href="{% url 'profile' %}">{{request.session.name}}</a></li>
-                        {% if request.session.type == 2  %}
+                    <li><a class="nav-item nav-link" href="{% url 'profile' %}">{{user.username}}</a></li>
+                        {% if user.roleid.id  == 2  %}
                          <a href="{% url 'create-post' %}">Add Post</a>
-                        {% elif request.session.type == 3 %}
+                        {% elif user.roleid.id  == 1 %}
                         <a href="{% url 'view-posts' %}">view Posts</a>
                         {% endif %}
                         <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
