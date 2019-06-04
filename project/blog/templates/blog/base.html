@@ -39,6 +39,7 @@
                     <ul   class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                         <li><a href="{% url 'blog-home' %}" class="nav-link">Home</a></li>
                         <li><a href="{% url 'blog-about' %}" class="nav-link">About Us</a></li>
+
                         {% if request.session.is_authenticated %}
 
                     <li><a class="nav-item nav-link" href="{% url 'profile' %}">{{request.session.name}}</a></li>
