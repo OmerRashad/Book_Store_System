@@ -1,16 +1,18 @@
 from django.db import models
 from django.forms import ModelForm
 from django import forms
-from blog.models import Account,Post,Book
+from blog.models import Account,Posts,Book
 from django.contrib.auth import authenticate
 
 from django.contrib.auth.forms import AuthenticationForm , User, UsernameField
 
+from blog.forms import AccountCreationForm
 
-class UserForm(ModelForm):
+
+class UserForm (ModelForm):
     class Meta:
         model = Account
-        fields = ['name', 'username', 'email','roleid','password','phone','dob','address','profilepic']
+        fields = ['username', 'email','roleid','password','dob','address','profilepic']
 
 class ReaderForm(ModelForm):
     class Meta:
@@ -19,7 +21,7 @@ class ReaderForm(ModelForm):
 
 class WriterForm(ModelForm):
     class Meta:
-        model = Post
+        model = Posts
         fields = ['title','date','content']
 
 class Login(forms.Form):

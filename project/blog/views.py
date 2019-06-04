@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from blog.models import Account
 from blog.models import Role
 from django.views.generic import ListView, CreateView
-from .models import Post
+from .models import Posts
 from blog.models import PostForm
 
 def post(request):
@@ -24,16 +24,15 @@ def home(request):
     return render(request,'blog/home.html', context)
 
 class PostListView(ListView):
-    model=Post
+    model=Posts
     template_name='blog/blogPosts.html'
     context_object_name='posts'
     ordering =['-date']
 
 class PostCreateView(CreateView):
-    model = Post
+    model = Posts
     fields = ['title', 'content']
     def form_valid(self,form):
-
         form.instance.name = self.request.user
         return super().form_valid(form)
 

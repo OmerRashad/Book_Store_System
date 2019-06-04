@@ -33,12 +33,12 @@ def login(request):
             username = request.POST.get("username")
             password = request.POST.get("password")
             try:
-                account = User.objects.get(username = username)
+                account = Account.objects.get(username = username)
                 path = request.get_full_path()
                 if account:
-                    # request.session['type'] = account.roleid.id
-                    # request.session['name'] = account.name
-                    # request.session['user_id'] = account.id
+                    request.session['type'] = request.roleid.id
+                    request.session['name'] = request.name
+                    request.session['user_id'] = request.id
                     is_authenticated(request,username)
                     return redirect('blog-home')
             except Exception:
