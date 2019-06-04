@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 import datetime
 from django.forms import ModelForm
@@ -13,7 +14,6 @@ class Role(models.Model):
 
 
 class Account(models.Model):
-    is_omer = ''
     id          = models.AutoField(primary_key=True)
     name        = models.CharField(max_length=150)
     username    = models.CharField(max_length=100)
@@ -40,7 +40,7 @@ class Post(models.Model):
     title       = models.TextField()
     date        = models.DateTimeField(default=timezone.now)
     content     = models.TextField()
-    user_id     = models.ForeignKey(Account, on_delete=models.CASCADE)
+    name        = models.CharField(max_length=100)
 
     def __str__(self):
         return self.title
@@ -49,7 +49,6 @@ class Post(models.Model):
 class AccountBook(models.Model):
     bookid      = models.ForeignKey(Book , on_delete= models.CASCADE)
     Accountid   = models.ForeignKey(Account , on_delete=models.CASCADE)
-
 
 
 class PostForm(ModelForm):

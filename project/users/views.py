@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.core import serializers
 from django.shortcuts import render, redirect
 from users.models import UserForm
@@ -31,13 +32,13 @@ def login(request):
         if form.is_valid():
             username = request.POST.get("username")
             password = request.POST.get("password")
-            request.session['user_id'] = Account.objects.get(email=username).id
             try:
-                account = Account.objects.get(username=username,password = password)
+                account = User.objects.get(username = username)
                 path = request.get_full_path()
                 if account:
-                    request.session['type'] = account.roleid.id
-                    request.session['name'] = account.name
+                    # request.session['type'] = account.roleid.id
+                    # request.session['name'] = account.name
+                    # request.session['user_id'] = account.id
                     is_authenticated(request,username)
                     return redirect('blog-home')
             except Exception:

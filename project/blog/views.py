@@ -30,11 +30,11 @@ class PostListView(ListView):
     ordering =['-date']
 
 class PostCreateView(CreateView):
-    model=Post
+    model = Post
     fields = ['title', 'content']
-
     def form_valid(self,form):
-        form.instance.author = self.request.session.user_id
+
+        form.instance.name = self.request.user
         return super().form_valid(form)
 
 
