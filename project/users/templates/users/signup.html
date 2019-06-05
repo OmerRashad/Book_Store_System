@@ -57,8 +57,14 @@
 
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="text-black" for="id_password" >Password</label>
-                  <input type="password" name="password" required id="id_password"  class="form-control rounded-0">
+                  <label class="text-black" for="id_password1" >Password</label>
+                  <input type="password" name="password1" required id="id_password1"  class="form-control rounded-0">
+              </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="id_password2" >Confirm Password</label>
+                  <input type="password" name="password2" required id="id_password2"  class="form-control rounded-0">
               </div>
               </div>
 
@@ -110,7 +116,21 @@
                 </div>
               </div>
 
-
+              <!--This Code Is For View Invalid Fields-->
+              {% if form.errors %}
+                  {% for field in form %}
+                      {% for error in field.errors %}
+                          <div class="alert alert-danger">
+                              <strong>{{ error|escape }}</strong>
+                          </div>
+                      {% endfor %}
+                  {% endfor %}
+                  {% for error in form.non_field_errors %}
+                      <div class="alert alert-danger">
+                          <strong>{{ error|escape }}</strong>
+                      </div>
+                  {% endfor %}
+              {% endif %}
             </form>
 
           </div>
