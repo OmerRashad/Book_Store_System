@@ -20,7 +20,6 @@ class Account(AbstractUser):
     roleid      = models.ForeignKey(Role, on_delete= models.CASCADE,blank=True,null = True)
     dob         = models.DateField(default=datetime.date.today)
     address     = models.TextField(max_length=150,null=True)
-    profilepic  = models.TextField(max_length=250,null=True)
 
 
 class Book(models.Model):

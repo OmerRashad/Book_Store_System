@@ -89,12 +89,6 @@
               </div>
               </div>
 
-              <div class="row form-group">
-                <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="text-black" for="id_profilepic" >Profile Pic</label>
-                  <input type="text" name="profilepic" required id="id_profilepic"  class="form-control rounded-0">
-              </div>
-              </div>
 
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
@@ -114,6 +108,11 @@
                 <div class="col-md-12">
                   <input type="submit" value="Sign Up" class="btn btn-black rounded-0 py-3 px-4">
                 </div>
+              </div>
+
+                <div>
+                <small> Already Have an Account ?</small>
+                <a class="pl-0 pr-3" href="{% url 'login' %}" > Log In </a>
               </div>
 
               <!--This Code Is For View Invalid Fields-->

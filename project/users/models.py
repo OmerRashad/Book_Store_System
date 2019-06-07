@@ -3,16 +3,12 @@ from django.forms import ModelForm
 from django import forms
 from blog.models import Account,Posts,Book
 from django.contrib.auth import authenticate
-
 from django.contrib.auth.forms import AuthenticationForm , User, UsernameField
-
 from blog.forms import AccountCreationForm
 
-
-class UserForm (ModelForm):
-    class Meta:
-        model = Account
-        fields = ['username', 'email','roleid','password','dob','address','profilepic']
+class Profile(models.Model):
+    user = models.OneToOneField(Account, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
 class ReaderForm(ModelForm):
     class Meta:
@@ -34,3 +30,16 @@ class Login(forms.Form):
         strip=False,
         widget=forms.PasswordInput,
     )
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = Account
+        fields = ['username', 'email' ,'address']
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']

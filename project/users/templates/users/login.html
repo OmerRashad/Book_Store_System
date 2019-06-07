@@ -50,23 +50,25 @@
               </div>
 
 
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <a href="{% url 'signup' %}"> Dont Have Account ?</a>
-                </div>
-
-                <div class="col-md-12">
+              <div class="col-md-12">
                   <input type="submit" value="Log In" class="btn btn-black rounded-0 py-3 px-4">
-                </div>
+              </div>
+
+              <div>
+                <small> Don't Have an Account ?</small>
+                <a class="pl-0 pr-3" href="{% url 'signup' %}" > Sign Up </a>
               </div>
 
 
+
             </form>
+          </div>
+
 
           </div>
 
         </div>
 
       </div>
-    </div>
+
 {% endblock %}

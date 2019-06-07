@@ -42,7 +42,7 @@
 
                         {% if user.is_authenticated or user.is_active%}
 
-                    <li><a class="nav-item nav-link" href="{% url 'profile' %}">{{user.username}}</a></li>
+                    <li><a style="text-transform:capitalize;" class="nav-item nav-link" href="{% url 'profile' %}">{{user.username}}</a></li>
                         {% if user.roleid.id  == 2  %}
                          <a href="{% url 'create-post' %}">Add Post</a>
                         {% elif user.roleid.id  == 1 %}
