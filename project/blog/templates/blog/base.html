@@ -47,6 +47,8 @@
                          <a href="{% url 'create-post' %}">Add Post</a>
                         {% elif user.roleid.id  == 1 %}
                         <a href="{% url 'view-posts' %}">view Posts</a>
+                        {% elif user.roleid.id  == 3 %}
+                        <a href="{% url 'add-book' %}">Add Book</a>
                         {% endif %}
                         <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
                     {% else %}

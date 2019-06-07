@@ -1,0 +1,83 @@
+{% extends "blog/base.html" %}
+{%block content%}
+<!------ Include the above in your HEAD tag ---------->
+
+<section class="testimonial py-5" id="testimonial">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-4 py-5 bg-primary text-white text-center ">
+                <div class=" ">
+                    <div class="card-body">
+                        <img src="../../static/store/reading.svg" style="width:50%">
+                        <h2 class="py-3">Book</h2>
+                        <p>Here You Can Add Any Type Of Book You Want To Be Added To Our Book Shop</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 py-5 border">
+                <h4 class="pb-4">Please fill with your details</h4>
+<!--                    fields = ['name', 'author', 'dop', 'sale', 'cover', 'ispn', 'category', 'description']-->
+
+                <form method="post">
+                    {%csrf_token%}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <input id="id_name" name="name" placeholder="Book Name" class="form-control" type="text">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <input type="text" class="form-control" id="id_author" name="author" placeholder="Author Name">
+                        </div>
+                      </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <input id="id_ispn" name="ispn" placeholder="ISPN CODE" class="form-control" type="number">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <input type="date" class="form-control" id="id_dop"  name = "dop" placeholder="Date Of Publish">
+                        </div>
+                      </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <input id="id_sale" name="sale" placeholder="Sale Percentage" class="form-control" type="number">
+                        </div>
+<!--                        <div class="form-group col-md-6">-->
+<!--                          <input type="text" class="form-control" id="id_category" name="category" placeholder="Category">-->
+<!--                        </div>-->
+                      </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <input type="number" class="form-control" id="id_price" name="price" placeholder="Price">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <input type="number" class="form-control" id="id_copies" name="copies" placeholder="No. Copies">
+                        </div>
+<!--                        <div class="form-group col-md-12">-->
+<!--                          <input type="file" class="form-control" id="id_cover" name="cover" placeholder="Book Cover">-->
+<!--                        </div>-->
+                        <div class="form-group col-md-12">
+                            <textarea id="id_description" name="description" cols="40" rows="5" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row col-md-6">
+                        <button type="submit" class="btn btn-danger">Add</button>
+                    </div>
+                    {% if form.errors %}
+                  {% for field in form %}
+                      {% for error in field.errors %}
+                          <div class="alert alert-danger">
+                              <strong>{{ field.name }}</strong>
+                          </div>
+                      {% endfor %}
+                  {% endfor %}
+                  {% for error in form.non_field_errors %}
+                      <div class="alert alert-danger">
+                          <strong>{{ field.name }}</strong>
+                      </div>
+                  {% endfor %}
+              {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{%endblock%}
