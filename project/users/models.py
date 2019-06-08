@@ -43,3 +43,8 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image']
+
+class ConfirmationForm(forms.Form): #Note that it is not inheriting from forms.ModelForm
+    username    = forms.CharField(max_length = 20)
+    code        = forms.IntegerField()
+    #All my attributes here

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>confrimation</h1>
+    <form action="{% url 'confirmation' %}" method="POST">
+        {% csrf_token%}
+<!--        <div>-->
+<!--            <input type="text" name="username" required id="id_username" placeholder="Please Enter Your User Name" >-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <input type="text" name="code" required id="id_code" placeholder="Please Enter Verification Code">-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <input type="submit" value="Confirm Account">-->
+<!--        </div>-->
+<!--        {% if form.errors %}-->
+<!--                  {% for field in form %}-->
+<!--                      {% for error in field.errors %}-->
+<!--                          <div class="alert alert-danger">-->
+<!--                              <strong>{{ error|escape }}</strong>-->
+<!--                          </div>-->
+<!--                      {% endfor %}-->
+<!--                  {% endfor %}-->
+<!--                  {% for error in form.non_field_errors %}-->
+<!--                      <div class="alert alert-danger">-->
+<!--                          <strong>{{ error|escape }}</strong>-->
+<!--                      </div>-->
+<!--                  {% endfor %}-->
+<!--              {% endif %}-->
+
+    {{form.as_p}}
+    <button type="submit">Submit</button>
+
+    </form>
+
+</body>
+</html>

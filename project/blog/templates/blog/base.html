@@ -40,7 +40,7 @@
                         <li><a href="{% url 'blog-home' %}" class="nav-link">Home</a></li>
                         <li><a href="{% url 'blog-about' %}" class="nav-link">About Us</a></li>
 
-                        {% if user.is_authenticated or user.is_active%}
+                        {% if user.is_authenticated and user.confirm == 1%}
 
                     <li><a style="text-transform:capitalize;" class="nav-item nav-link" href="{% url 'profile' %}">{{user.username}}</a></li>
                         {% if user.roleid.id  == 2  %}

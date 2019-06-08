@@ -20,6 +20,8 @@ class Account(AbstractUser):
     roleid      = models.ForeignKey(Role, on_delete= models.CASCADE,blank=True,null = True)
     dob         = models.DateField(default=datetime.date.today)
     address     = models.TextField(max_length=150,null=True)
+    confirm     = models.IntegerField(default = 0,null = True)
+    randNum     =models.IntegerField(default=0, null=True)
 
 
 class Book(models.Model):
