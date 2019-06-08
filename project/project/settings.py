@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'chat',
+    'channels',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'store.apps.StoreConfig',
@@ -72,6 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'project.wsgi.application'
+ASGI_APPLICATION = 'project.routing.application'
 
 
 # Database
@@ -135,6 +138,14 @@ AUTH_USER_MODEL = 'blog.Account'
 
 LOGIN_URL = 'user/login'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 EMAIL_HOST= 'smtp.gmail.com'
 EMAIL_PORT= 587
 EMAIL_HOST_USER='socialbookstorefcih@gmail.com'

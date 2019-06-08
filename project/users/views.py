@@ -16,7 +16,7 @@ def signup(request):
         form = AccountCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            con = random.randint(1, 9999)
+            con = random.randint(1000, 9999)
             user=Account.objects.get(username=request.POST.get('username'))
             email = user.email
             name=user.username
