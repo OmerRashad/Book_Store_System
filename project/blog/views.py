@@ -40,7 +40,6 @@ class PostCreateView(CreateView):
 
     #This Line Is For Redirect To Home After Adding A New Post
     success_url = reverse_lazy('blog-home')
-    
     def form_valid(self,form):
         form.instance.name = self.request.user
         return super().form_valid(form)
