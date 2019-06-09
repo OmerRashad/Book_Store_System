@@ -29,7 +29,7 @@
                 <p class="mb-4"><small>Book Price : </small>{{book.price}}</p>
                 <div>
                   <a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>
-                  <a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>
+                  <a href="{% url 'book_profile' book.id%}" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>
                   <a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">Add to like</a>
 
                 </div>

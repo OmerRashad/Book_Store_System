@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 from .models import Book
 
 class AddBook(CreateView):
@@ -22,3 +22,6 @@ class ViewBook(ListView):
     template_name='store/shop.html'
     context_object_name='books'
 
+class book_profile(DetailView):
+    model = Book
+    template_name = "store/book_profile.html"

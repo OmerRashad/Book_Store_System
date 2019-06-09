@@ -29,7 +29,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name = 'users/logout.html'),name = 'logout'),
     path('blog/', include('blog.urls') ),
-    path('home/', user_views.viewHome, name='blog-home'),
+    path('', user_views.viewHome, name='blog-home'),
     path('confirmation/', user_views.confirmation, name='confirmation'),
     url(r'^chat/', include('chat.urls')),
     # path('bot/', bot_view.bot, name='bot'),
