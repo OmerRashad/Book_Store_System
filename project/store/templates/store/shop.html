@@ -1,0 +1,235 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+
+    <div class="site-section" id="products-section">
+      <div class="container">
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-6 text-center">
+            <h3 class="section-sub-title">Book Store</h3>
+            <h2 class="section-title mb-3">Our Products</h2>
+            <p>Here's variety of book categories and unique packages that appeal to different customers’ preferences , We manage to serve different tastes of readers and to give them personalized service</p>
+          </div>
+        </div>
+        <div class="row">
+
+{% for book in books%}
+          <div class="col-lg-4 col-md-6 mb-5">
+            <div class="product-item">
+              <figure >
+                <img style="width:300;height:300;padding:auto;" src="{{ book.book_profile.image.url }}" alt="Image" class="img-fluid">
+              </figure>
+              <div class="px-4">
+                <h3><a href="#">{{book.name}}</a></h3>
+                <!--<div class="mb-3">-->
+                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
+                  <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
+                <!--</div>-->
+                <p class="mb-4"><small>Book Author : </small>{{book.author}}</p>
+                <p class="mb-4"><small>Book Price : </small>{{book.price}}</p>
+                <div>
+                  <a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>
+                  <a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>
+                  <a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">Add to like</a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+{%endfor%}
+
+          </div>
+      </div>
+    </div>
+
+
+
+
+<!--for book in books-->
+          <!--&lt;!&ndash;Grid column&ndash;&gt;-->
+          <!--<div class="col-lg-3 col-md-6 mb-4">-->
+
+            <!--&lt;!&ndash;Card&ndash;&gt;-->
+            <!--<div class="card">-->
+
+              <!--&lt;!&ndash;Card image&ndash;&gt;-->
+              <!--<div class="view overlay">-->
+                <!--<img src="{{ book.book_profile.image.url }}" class="card-img-top" alt="XX">-->
+                <!--<a>-->
+                  <!--<div class="mask rgba-white-slight"></div>-->
+                <!--</a>-->
+              <!--</div>-->
+              <!--&lt;!&ndash;Card image&ndash;&gt;-->
+
+              <!--&lt;!&ndash;Card content&ndash;&gt;-->
+              <!--<div class="card-body text-center">-->
+                <!--&lt;!&ndash;Category & Title&ndash;&gt;-->
+                <!--<a href="" class="grey-text">-->
+                  <!--<h5>{{book.name}}</h5>-->
+                <!--</a>-->
+                <!--<h5>-->
+                  <!--<strong>-->
+                    <!--<a href="" class="dark-grey-text">{{book.author}}-->
+                      <!--<span class="badge badge-pill danger-color">NEW</span>-->
+                    <!--</a>-->
+                  <!--</strong>-->
+                <!--</h5>-->
+
+                <!--<h4 class="font-weight-bold blue-text">-->
+                  <!--<strong>{{book.price}}$</strong>-->
+                <!--</h4>-->
+
+              <!--</div>-->
+              <!--&lt;!&ndash;Card content&ndash;&gt;-->
+
+            <!--</div>-->
+            <!--&lt;!&ndash;Card&ndash;&gt;-->
+
+          <!--</div>-->
+    	  <!--endfor-->
+
+          <!--&lt;!&ndash;Grid column&ndash;&gt;-->
+		<!--</div>-->
+
+	  <!--</section>-->
+{%endblock%}
+
+
+
+
+
+
+<!--<div class="site-section" id="products-section">-->
+      <!--<div class="container">-->
+        <!--<div class="row mb-5 justify-content-center">-->
+          <!--<div class="col-md-6 text-center">-->
+            <!--<h3 class="section-sub-title">Popular Products</h3>-->
+            <!--<h2 class="section-title mb-3">Our Products</h2>-->
+            <!--<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae nostrum natus excepturi fuga ullam accusantium vel ut eveniet aut consequatur laboriosam ipsam.</p>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col-lg-4 col-md-6 mb-5">-->
+            <!--<div class="product-item">-->
+              <!--<figure>-->
+                <!--<img src="images/model_1_bg.jpg" alt="Image" class="img-fluid">-->
+              <!--</figure>-->
+              <!--<div class="px-4">-->
+                <!--<h3><a href="#">Wild West Hoodie</a></h3>-->
+                <!--<div class="mb-3">-->
+                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
+                  <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
+                <!--</div>-->
+                <!--<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
+                <!--<div>-->
+                  <!--<a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>-->
+                  <!--<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="col-lg-4 col-md-6 mb-5">-->
+            <!--<div class="product-item">-->
+              <!--<figure>-->
+                <!--<img src="images/model_2_bg.jpg" alt="Image" class="img-fluid">-->
+              <!--</figure>-->
+              <!--<div class="px-4">-->
+                <!--<h3><a href="#">Wild West Hoodie</a></h3>-->
+                <!--<div class="mb-3">-->
+                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
+                  <!--<span class="meta-icons wishlist active"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
+                <!--</div>-->
+                <!--<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
+                <!--<div>-->
+                  <!--<a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>-->
+                  <!--<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="col-lg-4 col-md-6 mb-5">-->
+            <!--<div class="product-item">-->
+              <!--<figure>-->
+                <!--<img src="images/model_3_bg.jpg" alt="Image" class="img-fluid">-->
+              <!--</figure>-->
+              <!--<div class="px-4">-->
+                <!--<h3><a href="#">Wild West Hoodie</a></h3>-->
+                <!--<div class="mb-3">-->
+                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
+                  <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
+                <!--</div>-->
+                <!--<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
+                <!--<div>-->
+                  <!--<a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>-->
+                  <!--<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="col-lg-4 col-md-6 mb-5">-->
+            <!--<div class="product-item">-->
+              <!--<figure>-->
+                <!--<img src="images/model_4_bg.jpg" alt="Image" class="img-fluid">-->
+              <!--</figure>-->
+              <!--<div class="px-4">-->
+                <!--<h3><a href="#">Wild West Hoodie</a></h3>-->
+                <!--<div class="mb-3">-->
+                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
+                  <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
+                <!--</div>-->
+                <!--<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
+                <!--<div>-->
+                  <!--<a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>-->
+                  <!--<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!---->
+          <!--<div class="col-lg-4 col-md-6 mb-5">-->
+            <!--<div class="product-item">-->
+              <!--<figure>-->
+                <!--<img src="images/model_5_bg.jpg" alt="Image" class="img-fluid">-->
+              <!--</figure>-->
+              <!--<div class="px-4">-->
+                <!--<h3><a href="#">Wild West Hoodie</a></h3>-->
+                <!--<div class="mb-3">-->
+                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
+                  <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
+                <!--</div>-->
+                <!--<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
+                <!--<div>-->
+                  <!--<a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>-->
+                  <!--<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="col-lg-4 col-md-6 mb-5">-->
+            <!--<div class="product-item">-->
+              <!--<figure>-->
+                <!--<img src="images/product_1_bg.jpg" alt="Image" class="img-fluid">-->
+              <!--</figure>-->
+              <!--<div class="px-4">-->
+                <!--<h3><a href="#">Wild West Hoodie</a></h3>-->
+                <!--<div class="mb-3">-->
+                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
+                  <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
+                <!--</div>-->
+                <!--<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
+                <!--<div>-->
+                  <!--<a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>-->
+                  <!--<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!---->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
