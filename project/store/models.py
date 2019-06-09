@@ -1,4 +1,6 @@
 from django.db import models
+from PIL import Image
+
 
 # Create your models here.
 import datetime
@@ -48,3 +50,11 @@ class OrderItem(models.Model):
 class Book_Profile(models.Model):
     book        = models.OneToOneField(Book,on_delete=models.CASCADE)
     image       = models.ImageField(default='default.jpg', upload_to='book_pics')
+    def save(self):
+        super(Book_Profile, self).save()
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (500,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)

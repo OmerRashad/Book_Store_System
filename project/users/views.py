@@ -3,8 +3,6 @@ from blog.forms import AccountCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate,login
-
-
 from blog.models import Account
 from .models import UserUpdateForm, ProfileUpdateForm, ConfirmationForm
 import random
