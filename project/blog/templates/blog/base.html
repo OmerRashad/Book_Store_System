@@ -17,7 +17,7 @@
 
 <!--    <link rel="stylesheet" type="text/css" href="{% static 'blog/aos.css' %}">-->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/flaticon.css' %}">
+<!--    <link rel="stylesheet" type="text/css" href="{% static 'blog/flaticon.css' %}">-->
 
     {% if title %}
         <title>Django Blog  -{{ title }}</title>
@@ -30,7 +30,7 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" >
     <div class="site-wrap">
 
-        <header class="site-navbar py-4 bg-white js-sticky-header site-navbar-target" role="banner" style="position:fixed;top:0px;">
+        <header class="site-navbar py-4 bg-white js-sticky-header site-navbar-target" role="banner" style="top:0px;">
             <div class="container">
             <div class="row align-items-center">
             <div class="col-6 col-xl-2">
@@ -40,17 +40,17 @@
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul   class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                         <li><a href="{% url 'blog-home' %}" class="nav-link">Home</a></li>
-                        <li><a href="{% url 'blog-about' %}" class="nav-link">About Us</a></li>
+                        <li><a href="{% url 'store:view-likes' %}" class="nav-link">My Likes</a></li>
 
                         {% if user.is_authenticated or user.is_active%}
-
+                         <a href="{% url 'index' %}">Chat!</a>
                     <li><a style="text-transform:capitalize;" class="nav-item nav-link" href="{% url 'profile' %}">{{user.username}}</a></li>
                         {% if user.roleid.id  == 2  %}
                          <a href="{% url 'create-post' %}">Add Post</a>
                         {% elif user.roleid.id  == 1 %}
                         <a href="{% url 'view-posts' %}">view Posts</a>
                         {% elif user.roleid.id  == 3 %}
-                        <a href="{% url 'add-book' %}">Add Book</a>
+                        <a href="{% url 'store:add-book' %}">Add Book</a>
                         {% endif %}
                         <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
                     {% else %}

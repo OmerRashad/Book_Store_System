@@ -8,7 +8,6 @@ from .models import UserUpdateForm, ProfileUpdateForm, ConfirmationForm
 import random
 from django.core.mail import send_mail
 
-
 def signup(request):
     if request.method == 'POST':
         form = AccountCreationForm(request.POST)

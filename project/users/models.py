@@ -1,46 +1,44 @@
+import datetime
+
 from django.db import models
-from django.forms import ModelForm
 from django import forms
-from blog.models import Account,Posts,Book
-from django.contrib.auth import authenticate
-from django.contrib.auth.forms import AuthenticationForm , User, UsernameField
-from blog.forms import AccountCreationForm
-from PIL import Image
+from blog.models import Account
+
+
+class Category(models.Model):
+    id          = models.AutoField(primary_key=True)
+    name        = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+
+
+class Book(models.Model):
+    name        = models.CharField(max_length=150)
+    author      = models.CharField(max_length=100)
+    dop         = models.DateField(default=datetime.date.today)
+    id          = models.IntegerField(primary_key=True)
+    owner       = models.ForeignKey(Account,on_delete=models.CASCADE)
+    sale        = models.IntegerField()
+    ispn        = models.CharField(max_length=100)
+    description = models.TextField(max_length=200)
+    price       = models.IntegerField()
+    copies      = models.IntegerField(default=1)
+    rate        = models.FloatField(default=0,null=True)
+    cover       = models.ImageField(default = 'default.jpg',upload_to = 'book_pics', null = True)
+    category    = models.ForeignKey(Category, on_delete = models.CASCADE, null = True)
+
+    def __str__(self):
+        return self.name
 
 
 class Profile(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-    # def save(self):
-    #     super(Profile, self).save()
-    #
-    #     img = Image.open(self.image.path)
-    #
-    #     if img.height > 300 or img.width > 300:
-    #         output_size = (300,300)
-    #         img.thumbnail(output_size)
-    #         img.save(self.image.path)
+    ebooks = models.ManyToManyField(Book, blank = True , null = True)
 
-class ReaderForm(ModelForm):
-    class Meta:
-        model = Book
-        fields = ['Author','name','Dop']
+    def __str__(self):
+        return self.user.username
 
-class WriterForm(ModelForm):
-    class Meta:
-        model = Posts
-        fields = ['title','date','content']
-
-class Login(forms.Form):
-    """
-    Base class for authenticating users. Extend this to get a form that accepts
-    username/password logins.
-    """
-    username = forms.CharField(max_length=100)
-    password = forms.CharField(
-        strip=False,
-        widget=forms.PasswordInput,
-    )
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
@@ -55,7 +53,9 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['image']
 
+
 class ConfirmationForm(forms.Form): #Note that it is not inheriting from forms.ModelForm
     username    = forms.CharField(max_length = 20)
     code        = forms.IntegerField()
     #All my attributes here
+

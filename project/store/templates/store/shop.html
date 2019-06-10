@@ -13,24 +13,31 @@
         </div>
         <div class="row">
 
-{% for book in books%}
+{% for object in object_list%}
           <div class="col-lg-4 col-md-6 mb-5">
             <div class="product-item">
               <figure >
-                <img style="width:300;height:300;padding:auto;" src="{{ book.book_profile.image.url }}" alt="Image" class="img-fluid">
+                <img style="width:300;height:300;padding:auto;" src="{{ object.book_profile.image.url }}" alt="Image" class="img-fluid">
               </figure>
               <div class="px-4">
-                <h3><a href="#">{{book.name}}</a></h3>
+                <h3><a href="#">{{object.name}}</a></h3>
                 <!--<div class="mb-3">-->
                   <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
                   <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
                 <!--</div>-->
-                <p class="mb-4"><small>Book Author : </small>{{book.author}}</p>
-                <p class="mb-4"><small>Book Price : </small>{{book.price}}</p>
+                <p class="mb-4"><small>Book Author : </small>{{object.author}}</p>
+                <p class="mb-4"><small>Book Price : </small>{{object.price}}</p>
                 <div>
-                  <a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>
-                  <a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>
-                  <a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">Add to like</a>
+		{% if object in user.profile.ebooks.all %}
+	            <!-- add a button here to see the product -->
+		            You own this
+                  {% elif object in current_order_products %}
+                    <a href="{% url 'store:order_summary' %}" class="btn btn-black btn-outline-black ml-1 rounded-0">Go to Cart</a>
+                  {% else %}
+                    <a href="{% url 'store:add_to_cart' object.id%}" class="btn btn-black btn-outline-black ml-1 rounded-0">Add to Cart</a>
+                  {% endif %}
+                  <a href="{% url 'store:book_profile' object.id%}" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>
+                  <a href="{% url 'store:addToLikes' object.id %}" class="btn btn-black btn-outline-black ml-1 rounded-0">Add to like</a>
 
                 </div>
               </div>

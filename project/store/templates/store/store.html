@@ -40,9 +40,13 @@
                         <div class="form-group col-md-6">
                           <input id="id_sale" name="sale" placeholder="Sale Percentage" class="form-control" type="number">
                         </div>
-<!--                        <div class="form-group col-md-6">-->
-<!--                          <input type="text" class="form-control" id="id_category" name="category" placeholder="Category">-->
-<!--                        </div>-->
+ <div class="form-group col-md-6">
+                          <select  name="category" required id = "id_category">
+                        {% for category in form.category %}
+                        <option>{{category}}</option>
+                        {%endfor%}
+                        </select>
+                        </div>
                       </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -51,9 +55,11 @@
                         <div class="form-group col-md-6">
                           <input type="number" class="form-control" id="id_copies" name="copies" placeholder="No. Copies">
                         </div>
-<!--                        <div class="form-group col-md-12">-->
-<!--                          <input type="file" class="form-control" id="id_cover" name="cover" placeholder="Book Cover">-->
-<!--                        </div>-->
+
+
+                        <div class="form-group col-md-12">
+                          <input type="file" class="form-control" id="id_cover" name="cover" placeholder="Book Cover">
+                        </div>
                         <div class="form-group col-md-12">
                             <textarea id="id_description" name="description" cols="40" rows="5" class="form-control"></textarea>
                         </div>

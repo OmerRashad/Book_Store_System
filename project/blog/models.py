@@ -16,7 +16,7 @@ class Role(models.Model):
 
 
 class Account(AbstractUser):
-    id          = models.AutoField(primary_key=True )
+    # id          = models.AutoField(primary_key=True )
     roleid      = models.ForeignKey(Role, on_delete= models.CASCADE,blank=True,null = True)
     dob         = models.DateField(default=datetime.date.today)
     address     = models.TextField(max_length=150,null=True)
@@ -41,12 +41,9 @@ class Posts(models.Model):
         return self.title
 
 
-class AccountBook(models.Model):
-    bookid      = models.ForeignKey(Book , on_delete= models.CASCADE)
-    Accountid   = models.ForeignKey(Account , on_delete=models.CASCADE)
-
 
 class PostForm(ModelForm):
     class Meta:
         model = Posts
         fields = ['content']
+
