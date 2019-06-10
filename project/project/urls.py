@@ -32,9 +32,7 @@ urlpatterns = [
     path('', user_views.viewHome, name='blog-home'),
     path('confirmation/', user_views.confirmation, name='confirmation'),
     url(r'^chat/', include('chat.urls')),
-    # path('bot/', bot_view.bot, name='bot'),
     path('store/', include('store.urls')),
-
 ]
 
 if settings.DEBUG:

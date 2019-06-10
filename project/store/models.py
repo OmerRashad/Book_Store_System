@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 from PIL import Image
 
 
@@ -51,3 +52,6 @@ class Book_Profile(models.Model):
 class AccountBook(models.Model):
     bookid      = models.ForeignKey(Book , on_delete= models.CASCADE)
     Accountid   = models.ForeignKey(Account , on_delete=models.CASCADE)
+
+class SearchForm(forms.Form):
+    search_content  = forms.CharField(max_length=20)

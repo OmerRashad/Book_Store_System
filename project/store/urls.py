@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from django.urls import path
-from .views import AddBook,book_profile,addToLikes,ViewLikes
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import AddBook,book_profile,addToLikes,ViewLikes,Search,search_bassem
 from .views import (
     add_to_cart,
     delete_from_cart,
@@ -22,6 +24,11 @@ urlpatterns = [
     url(r'^success/$', success, name='purchase_success'),
     url(r'^item/delete/(?P<item_id>[-\w]+)/$', delete_from_cart, name='delete_item'),
     url(r'^checkout/$', checkout, name='checkout'),
-    url(r'^update-transaction/(?P<token>[-\w]+)/$', update_transaction_records, name='update_records')
+    url(r'^update-transaction/(?P<token>[-\w]+)/$', update_transaction_records, name='update_records'),
+    path('search/',search_bassem,name='search'),
+    path('searchh/',Search.as_view(),name='search2')
 ]
 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

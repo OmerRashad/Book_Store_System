@@ -1,0 +1,57 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<!--<br/>-->
+<!--<br/>-->
+<!--<br/>-->
+<!--<br/>-->
+<!--<br/>-->
+<!--<br/>-->
+<!--<br/>-->
+
+
+
+<!--{% for inst in Accountbooks %}-->
+<!--{% if request.user.username == inst.Accountid.username  %}-->
+<!--<p>{{ inst.bookid.name }}</p>-->
+<!--{% endif %}-->
+<!--{% endfor %}-->
+
+  <div class="site-section" id="products-section">
+      <div class="container">
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-6 text-center">
+            <h3 class="section-sub-title">Book Store</h3>
+            <h2 class="section-title mb-3">Your Likes</h2>
+            <p>Here's variety of book categories and unique packages that appeal to different customers’ preferences , We manage to serve different tastes of readers and to give them personalized service</p>
+          </div>
+        </div>
+        <div class="row">
+
+{% for inst in Book %}
+{% if request.session.search_content == inst.name  %}
+<div class="col-lg-4 col-md-6 mb-5">
+  <div class="product-item">
+    <figure >
+      <img style="width:300;height:300;padding:auto;" src="{{ inst.cover.url }}" alt="Image" class="img-fluid">
+    </figure>
+    <div class="px-4">
+      <h3><a href="#">{{inst.name}}</a></h3>
+      <p class="mb-4"><small>Book Author : </small>{{inst.author}}</p>
+      <p class="mb-4"><small>Book Price : </small>{{inst.price}}</p>
+      <div>
+        <a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>
+        <a href="{% url 'store:book_profile' inst.id%}" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endfor %}
+
+
+          </div>
+      </div>
+    </div>
+
+{%endblock%}

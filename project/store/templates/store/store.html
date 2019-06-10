@@ -18,7 +18,7 @@
                 <h4 class="pb-4">Please fill with your details</h4>
 <!--                    fields = ['name', 'author', 'dop', 'sale', 'cover', 'ispn', 'category', 'description']-->
 
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     {%csrf_token%}
                     <div class="form-row">
                         <div class="form-group col-md-6">

@@ -20,11 +20,11 @@ class Book(models.Model):
     owner       = models.ForeignKey(Account,on_delete=models.CASCADE)
     sale        = models.IntegerField()
     ispn        = models.CharField(max_length=100)
-    description = models.TextField(max_length=200)
+    description = models.TextField(max_length=2000)
     price       = models.IntegerField()
     copies      = models.IntegerField(default=1)
     rate        = models.FloatField(default=0,null=True)
-    cover       = models.ImageField(default = 'default.jpg',upload_to = 'book_pics', null = True)
+    cover       = models.ImageField(default = 'empty_cover.png',upload_to = 'book_pics', null = True)
     category    = models.ForeignKey(Category, on_delete = models.CASCADE, null = True)
 
     def __str__(self):

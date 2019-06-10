@@ -1,0 +1,23 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Rooms</title>
+</head>
+<body>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<form action="{% url 'store:search' %}" method="post">
+    {%csrf_token%}
+
+    <input name="search_content" required id="id_search_content" type="text" size="100"/><br/>
+    <input id="search-submit" type="submit" value="Enter"/>
+</form>
+</body>
+</html>
+{%endblock content%}

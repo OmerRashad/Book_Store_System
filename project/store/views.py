@@ -5,6 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView
 
 from store.extras import generate_order_id
+from .models import SearchForm
 from store.models import Book, Order, OrderItem
 from users.models import Profile
 from .models import AccountBook
@@ -152,3 +153,21 @@ def update_transaction_records(request, token):
 
 def success(request, **kwargs):
     return render(request, 'store/purchase_success.html',{})
+
+def search_bassem(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            request.session['search_content'] = request.POST['search_content']
+            return redirect('store:search2')
+    return render(request, 'store/search.html',{})
+
+
+
+
+
+class Search(ListView):
+    model = Book
+    template_name = 'store/search2.html'
+    context_object_name = 'Book'
+    # success_url = reverse_lazy('searchh')
