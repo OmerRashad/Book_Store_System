@@ -13,10 +13,38 @@
 <br/>
 <br/>
     What chat room would you like to enter?<br/>
-    <input id="room-name-input" type="text" size="100"/><br/>
-    <input id="room-name-submit" type="button" value="Enter"/>
+    <input required id="id_room-name-input" name="room-name-input" type="text" size="100"/><br/>
+    <input onclick="setGetParameter()" id="room-name-submit" type="button" value="Enter" formmethod="post"/>
 
+ <section>
+   <div class="row">
+    <table class="table table-hover table-bordered text-center">
+      <tr class="text-center">
+          <th>no.</th>
+          <th>room name</th>
+          <th>count</th>
+
+      </tr>
+      {% for item in Word %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>
+            {{ item.roomName }}
+          </td>
+             <td>
+            {{ item.count }}
+          </td>
+        </tr>
+        {%endfor%}
+    </table>
+   </div>
+ </section>
     <script>
+
+function setGetParameter(){
+    var searchWord = document.getElementById('id_room-name-input').value;
+    window.location.href = "{% url 'view_detail' 1%}".replace(/1/, searchWord.toString()) + "?room-name-input="+searchWord;
+}
         document.querySelector('#room-name-input').focus();
         document.querySelector('#room-name-input').onkeyup = function(e) {
             if (e.keyCode === 13) {  // enter, return

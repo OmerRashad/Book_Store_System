@@ -7,6 +7,9 @@ from blog.models import Account
 from .models import UserUpdateForm, ProfileUpdateForm, ConfirmationForm
 import random
 from django.core.mail import send_mail
+from store.models import AccountBook
+from users.models import Book
+import collections
 
 def signup(request):
     if request.method == 'POST':
@@ -83,6 +86,17 @@ def profile(request):
 
 
 def viewHome(request):
+    if(request.user.username):
+        tasteList=[]
+
+        if AccountBook.objects.filter(Accountid=request.user).count():
+            for inst in AccountBook.objects.all():
+                if (request.user.username == inst.Accountid.username):
+                    l = str(inst.bookid.category)
+                    tasteList.append(l)
+            counter = collections.Counter(tasteList)
+            taste = counter.most_common()[0][0]
+            request.session['taste']=taste
     return render(request,'blog/home.html')
 
 
@@ -109,3 +123,4 @@ def confirm(request):
     else:
         form = ConfirmationForm()
     return render(request,'users/confirmation.html',{'form':form})
+

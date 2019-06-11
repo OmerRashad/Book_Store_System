@@ -32,13 +32,14 @@
           <div class="col-lg-4 col-md-6 mb-5">
             <div class="product-item">
               <figure >
-                <img style="width:300;height:300;padding:auto;" src="{{ inst.bookid.book_profile.image.url }}" alt="Image" class="img-fluid">
+                <img style="width:300;height:300;padding:auto;" src="{{ inst.bookid.cover.url }}" alt="Image" class="img-fluid">
               </figure>
               <div class="px-4">
 
                 <h3><a href="#">{{inst.bookid.name}}</a></h3>
                 <p class="mb-4"><small>Book Author : </small>{{inst.bookid.author}}</p>
                 <p class="mb-4"><small>Book Price : </small>{{inst.bookid.price}}</p>
+                  <p>{{inst.bookid.category}}</p>
                 <div>
                   <a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>
                   <a href="{% url 'store:book_profile' inst.bookid.id%}" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>

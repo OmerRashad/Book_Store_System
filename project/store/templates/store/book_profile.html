@@ -14,7 +14,7 @@
           <div class="col-lg-4 col-md-6 mb-5">
             <div class="product-item">
               <figure >
-                <img style="width:300;height:300;padding:auto;" src="{{ object.book_profile.image.url }}" alt="Image" class="img-fluid">
+                <img style="width:300;height:300;padding:auto;" src="{{ object.cover.url }}" alt="Image" class="img-fluid">
               </figure>
               <div class="px-4">
                 <h3><a href="#">{{object.name}}</a></h3>
@@ -30,6 +30,8 @@
                   </p>
                 <div>
                   <a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>
+                  <a href="{% url 'store:addToLikes' object.id %}" class="btn btn-black btn-outline-black ml-1 rounded-0">Add to like</a>
+
                 </div>
               </div>
             </div>

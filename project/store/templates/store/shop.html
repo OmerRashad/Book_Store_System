@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content %}
-
+<p>{{request.session.taste}}</p>
 
     <div class="site-section" id="products-section">
       <div class="container">
@@ -26,8 +26,9 @@
                   <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
                 <!--</div>-->
                 <p class="mb-4"><small>Book Author : </small>{{object.author}}</p>
-                <p class="mb-4"><small>Book Price : </small>{{object.price}}</p>
+                <p class="mb-4" style="text-decoration:line-through" ><small>Book Price : </small>{{object.price}}</p>
                 <div>
+
 		{% if object in user.profile.ebooks.all %}
 	            <!-- add a button here to see the product -->
 		            You own this
