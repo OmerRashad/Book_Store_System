@@ -120,7 +120,11 @@ def order_details(request, **kwargs):
 @login_required()
 def checkout(request):
     existing_order = get_user_pending_order(request)
-    return render(request, 'store/checkout.html', existing_order)
+    context = {
+        'order': existing_order,
+    }
+    return render(request, 'store/checkout.html', context)
+
 
 
 @login_required()
@@ -131,16 +135,14 @@ def process_payment(request , order_id):
 
 
 @login_required()
-def update_transaction_records(request, token):
-    order_to_purchase = get_user_pending_order(request)
-
+def update_transaction_records(request, order_id):
+    order_to_purchase = Order.objects.filter(pk=order_id).first()
     order_to_purchase.is_orderd = True
     order_to_purchase.date_order = datetime.datetime.now()
     order_to_purchase.save()
 
     order_items = order_to_purchase.items.all()
-    order_items.update(is_order = True, date_ordered = datetime.datetime.now())
-
+    order_items.update(is_ordered = True, date_ordered = datetime.datetime.now())
     user_profile = get_object_or_404(Profile,user=request.user)
 
     order_products = [item.product for item in order_items]
@@ -148,8 +150,9 @@ def update_transaction_records(request, token):
     user_profile.ebooks.add(*order_products)
 
     user_profile.save()
+    messages.info(request, " Thank you! Your Items have been added to your profile")
+    return redirect(reverse('store:book'))
 
-    return redirect(reverse('profile'))
 
 def success(request, **kwargs):
     return render(request, 'store/purchase_success.html',{})
@@ -164,6 +167,11 @@ def search_bassem(request):
 
 
 
+
+def transactions(request):
+    profile = Profile.objects.all()
+    request.session['username'] = request.user.username
+    return render(request,"store/transactions.html",{'profiles':profile})
 
 
 class Search(ListView):
