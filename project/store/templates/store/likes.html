@@ -41,7 +41,7 @@
                 <p class="mb-4"><small>Book Price : </small>{{inst.bookid.price}}</p>
                   <p>{{inst.bookid.category}}</p>
                 <div>
-                  <a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>
+                  <a href="url 'store:addToLikes' inst.bookid.id " class="btn btn-black mr-1 rounded-0">Cart</a>
                   <a href="{% url 'store:book_profile' inst.bookid.id%}" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>
                 </div>
               </div>

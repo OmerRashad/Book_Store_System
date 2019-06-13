@@ -40,23 +40,23 @@
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul   class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                         <li><a href="{% url 'blog-home' %}" class="nav-link">Home</a></li>
-                        <li><a href="{% url 'store:view-likes' %}" class="nav-link">My Likes</a></li>
-
+                        <li ><a href="{% url 'store:view-likes' %}" class="nav-link">My Likes</a></li>
                         {% if user.is_authenticated or user.is_active%}
-                       <a href="{% url 'index' %}">Chat!</a>
+                       <a  href="{% url 'index' %}">Chat!</a>
 
-<li >
-                        <div class="dropdown">
-  <button  style=" background:#fff; color:#000; border-style:none; font-weight:normal" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Profile  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-    <a style="color:#B22222	" class="dropdown-item" href="{% url 'profile' %}">
+
+                        <li style="color:#000 ;"><ul>
+        <a style="left:70%" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Profile</a>
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+              <a style="color:#B22222	" class="dropdown-item" href="{% url 'profile' %}">
                         {{user.username}}</a>
     <a  style="color:#B22222	" class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+        </div>
+      </li>
 
-  </div>
-</div>
+    </ul>
 
 </li>
 
