@@ -3,13 +3,12 @@ import datetime
 from django.shortcuts import render,get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView
-
 from store.extras import generate_order_id
 from .models import SearchForm
 from store.models import Book, Order, OrderItem
 from users.models import Profile
 from .models import AccountBook
-from blog.models import Account
+from blog.models import Account, Posts, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -179,3 +178,4 @@ class Search(ListView):
     template_name = 'store/search2.html'
     context_object_name = 'Book'
     # success_url = reverse_lazy('searchh')
+

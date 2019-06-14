@@ -28,7 +28,8 @@ urlpatterns = [
     url(r'^update-transaction/(?P<order_id>[-\w]+)/$', update_transaction_records, name='update_records'),
     url(r'^payment/(?P<order_id>[-\w]+)/$', process_payment, name='process_payment'),
     path('search/',search_bassem,name='search'),
-    path('searchh/',Search.as_view(),name='search2')
+    path('searchh/',Search.as_view(),name='search2'),
+
 ]
 
 

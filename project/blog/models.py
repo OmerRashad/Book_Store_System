@@ -5,6 +5,7 @@ from django.forms import ModelForm
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 
 
 
@@ -33,7 +34,7 @@ class Book(models.Model):
 
 class Posts(models.Model):
     id          = models.IntegerField(primary_key=True)
-    title       = models.TextField()
+    title       = models.TextField(max_length=100)
     date        = models.DateTimeField(default=timezone.now)
     content     = models.TextField()
     name        = models.CharField(max_length=100)
@@ -47,3 +48,11 @@ class PostForm(ModelForm):
         model = Posts
         fields = ['content']
 
+class Comment(models.Model):
+    user = models.ForeignKey(Account, default=1, on_delete=models.CASCADE)
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
+    content = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.content)

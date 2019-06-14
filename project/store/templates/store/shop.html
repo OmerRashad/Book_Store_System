@@ -1,6 +1,48 @@
+
 {% extends "blog/base.html" %}
 {% block content %}
-<p>{{request.session.taste}}</p>
+{% load static %}
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="{% static 'blog/swiper.min.css' %}">
+  <style>
+  .swiper-container {
+      width: 100%;
+      padding:auto;
+      position: relative;
+      height: 390px;
+
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      height:380px;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+
+    }
+  </style>
+</head>
+
+<body>
+<script type="text/javascript" src="{% static 'blog/swiper.min.js' %}"></script>
 
     <div class="site-section" id="products-section">
       <div class="container">
@@ -9,9 +51,40 @@
             <h3 class="section-sub-title">Book Store</h3>
             <h2 class="section-title mb-3">Our Products</h2>
             <p>Here's variety of book categories and unique packages that appeal to different customers’ preferences , We manage to serve different tastes of readers and to give them personalized service</p>
+            <p>Some Recommendations specially for you</p>
           </div>
-        </div>
-        <div class="row">
+
+
+
+                  <div class="swiper-container" >
+                  <div class="swiper-wrapper">
+                    {%for object in object_list %}
+                    {% if object.category.name == request.session.taste %}
+                    <div class="swiper-slide" style="height:100%;" >
+                    <div class="imgbox"  >
+                    <img style="height:300px;" src="{{ object.cover.url }}">
+                    <div class="detail"  >
+                    <h5>{{object.name}}<br><span>{{object.author}}</span></h5>
+                    </div>
+                    </div>
+                    </div>
+                    {%endif%}
+                    {%endfor%}
+
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination"></div>
+                  <!-- Add Arrows -->
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                  </div>
+
+
+
+</div>
+        <hr>
+<div class="row">
+
 
 {% for object in object_list%}
           <div class="col-lg-4 col-md-6 mb-5">
@@ -49,195 +122,24 @@
           </div>
       </div>
     </div>
-
-
-
-
-<!--for book in books-->
-          <!--&lt;!&ndash;Grid column&ndash;&gt;-->
-          <!--<div class="col-lg-3 col-md-6 mb-4">-->
-
-            <!--&lt;!&ndash;Card&ndash;&gt;-->
-            <!--<div class="card">-->
-
-              <!--&lt;!&ndash;Card image&ndash;&gt;-->
-              <!--<div class="view overlay">-->
-                <!--<img src="{{ book.book_profile.image.url }}" class="card-img-top" alt="XX">-->
-                <!--<a>-->
-                  <!--<div class="mask rgba-white-slight"></div>-->
-                <!--</a>-->
-              <!--</div>-->
-              <!--&lt;!&ndash;Card image&ndash;&gt;-->
-
-              <!--&lt;!&ndash;Card content&ndash;&gt;-->
-              <!--<div class="card-body text-center">-->
-                <!--&lt;!&ndash;Category & Title&ndash;&gt;-->
-                <!--<a href="" class="grey-text">-->
-                  <!--<h5>{{book.name}}</h5>-->
-                <!--</a>-->
-                <!--<h5>-->
-                  <!--<strong>-->
-                    <!--<a href="" class="dark-grey-text">{{book.author}}-->
-                      <!--<span class="badge badge-pill danger-color">NEW</span>-->
-                    <!--</a>-->
-                  <!--</strong>-->
-                <!--</h5>-->
-
-                <!--<h4 class="font-weight-bold blue-text">-->
-                  <!--<strong>{{book.price}}$</strong>-->
-                <!--</h4>-->
-
-              <!--</div>-->
-              <!--&lt;!&ndash;Card content&ndash;&gt;-->
-
-            <!--</div>-->
-            <!--&lt;!&ndash;Card&ndash;&gt;-->
-
-          <!--</div>-->
-    	  <!--endfor-->
-
-          <!--&lt;!&ndash;Grid column&ndash;&gt;-->
-		<!--</div>-->
-
-	  <!--</section>-->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+      spaceBetween: 30,
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+</body>
+</html>
 {%endblock%}
-
-
-
-
-
-
-<!--<div class="site-section" id="products-section">-->
-      <!--<div class="container">-->
-        <!--<div class="row mb-5 justify-content-center">-->
-          <!--<div class="col-md-6 text-center">-->
-            <!--<h3 class="section-sub-title">Popular Products</h3>-->
-            <!--<h2 class="section-title mb-3">Our Products</h2>-->
-            <!--<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae nostrum natus excepturi fuga ullam accusantium vel ut eveniet aut consequatur laboriosam ipsam.</p>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-          <!--<div class="col-lg-4 col-md-6 mb-5">-->
-            <!--<div class="product-item">-->
-              <!--<figure>-->
-                <!--<img src="images/model_1_bg.jpg" alt="Image" class="img-fluid">-->
-              <!--</figure>-->
-              <!--<div class="px-4">-->
-                <!--<h3><a href="#">Wild West Hoodie</a></h3>-->
-                <!--<div class="mb-3">-->
-                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
-                  <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
-                <!--</div>-->
-                <!--<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
-                <!--<div>-->
-                  <!--<a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>-->
-                  <!--<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-
-          <!--<div class="col-lg-4 col-md-6 mb-5">-->
-            <!--<div class="product-item">-->
-              <!--<figure>-->
-                <!--<img src="images/model_2_bg.jpg" alt="Image" class="img-fluid">-->
-              <!--</figure>-->
-              <!--<div class="px-4">-->
-                <!--<h3><a href="#">Wild West Hoodie</a></h3>-->
-                <!--<div class="mb-3">-->
-                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
-                  <!--<span class="meta-icons wishlist active"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
-                <!--</div>-->
-                <!--<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
-                <!--<div>-->
-                  <!--<a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>-->
-                  <!--<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-
-          <!--<div class="col-lg-4 col-md-6 mb-5">-->
-            <!--<div class="product-item">-->
-              <!--<figure>-->
-                <!--<img src="images/model_3_bg.jpg" alt="Image" class="img-fluid">-->
-              <!--</figure>-->
-              <!--<div class="px-4">-->
-                <!--<h3><a href="#">Wild West Hoodie</a></h3>-->
-                <!--<div class="mb-3">-->
-                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
-                  <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
-                <!--</div>-->
-                <!--<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
-                <!--<div>-->
-                  <!--<a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>-->
-                  <!--<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-
-          <!--<div class="col-lg-4 col-md-6 mb-5">-->
-            <!--<div class="product-item">-->
-              <!--<figure>-->
-                <!--<img src="images/model_4_bg.jpg" alt="Image" class="img-fluid">-->
-              <!--</figure>-->
-              <!--<div class="px-4">-->
-                <!--<h3><a href="#">Wild West Hoodie</a></h3>-->
-                <!--<div class="mb-3">-->
-                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
-                  <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
-                <!--</div>-->
-                <!--<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
-                <!--<div>-->
-                  <!--<a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>-->
-                  <!--<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!---->
-          <!--<div class="col-lg-4 col-md-6 mb-5">-->
-            <!--<div class="product-item">-->
-              <!--<figure>-->
-                <!--<img src="images/model_5_bg.jpg" alt="Image" class="img-fluid">-->
-              <!--</figure>-->
-              <!--<div class="px-4">-->
-                <!--<h3><a href="#">Wild West Hoodie</a></h3>-->
-                <!--<div class="mb-3">-->
-                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
-                  <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
-                <!--</div>-->
-                <!--<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
-                <!--<div>-->
-                  <!--<a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>-->
-                  <!--<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-
-          <!--<div class="col-lg-4 col-md-6 mb-5">-->
-            <!--<div class="product-item">-->
-              <!--<figure>-->
-                <!--<img src="images/product_1_bg.jpg" alt="Image" class="img-fluid">-->
-              <!--</figure>-->
-              <!--<div class="px-4">-->
-                <!--<h3><a href="#">Wild West Hoodie</a></h3>-->
-                <!--<div class="mb-3">-->
-                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
-                  <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
-                <!--</div>-->
-                <!--<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
-                <!--<div>-->
-                  <!--<a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>-->
-                  <!--<a href="#" class="btn btn-black btn-outline-black ml-1 rounded-0">View</a>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-
-          <!---->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->

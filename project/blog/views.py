@@ -1,11 +1,13 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
-from blog.models import Account
+from blog.models import Account, Comment
 from blog.models import Role
 from django.views.generic import ListView, CreateView
 from .models import Posts
 from blog.models import PostForm
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect, Http404
+from django.urls import reverse
 
 
 def post(request):
@@ -47,3 +49,5 @@ class PostCreateView(CreateView):
 
 def about(request):
     return render(request,'blog/about.html' , {'title': 'About'} )
+
+
