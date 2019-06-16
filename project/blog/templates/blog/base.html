@@ -14,16 +14,16 @@
     <link rel="stylesheet" type="text/css" href="{% static 'blog/themedefault.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/jquery.fancybox.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/datapicker.css' %}">
-
+<link rel= 'stylesheet' type="text/css" href="{% static 'chatbot/css/bot.css' %}">
 <!--    <link rel="stylesheet" type="text/css" href="{% static 'blog/aos.css' %}">-->
     <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
 <!--    <link rel="stylesheet" type="text/css" href="{% static 'blog/flaticon.css' %}">-->
 
     {% if title %}
-        <title>Django Blog  -{{ title }}</title>
+        <title>{{ title }}</title>
 
     {% else %}
-        <title>Django Blog</title>
+        <title>ReadersHUB</title>
 
     {% endif %}
 </head>
@@ -34,7 +34,7 @@
             <div class="container">
             <div class="row align-items-center">
             <div class="col-6 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="{% url 'blog-home' %}" class="text-black mb-0">BookStore<span class="text-primary">.</span> </a></h1>
+            <h1 class="mb-0 site-logo"><a href="{% url 'blog-home' %}" class="text-black mb-0">ReadersHUB<span class="text-primary">.</span> </a></h1>
             </div>
             <div class="col-12 col-md-10 d-none d-xl-block">
                 <nav class="site-navigation position-relative text-right" role="navigation">
@@ -141,6 +141,9 @@
     <script src="{% static 'js/aos.js' %}"></script>
     <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
     <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static '/chatbot/js/script.js' %}"></script>
+    <script src="{% static '/chatbot/js/dev-vue.js' %}"></script>
+
 
     </div>
     </body>

@@ -48,7 +48,7 @@ def addToLikes(request,book):
 
 @login_required()
 def book_list(request):
-    object_list = Book.objects.all()
+    object_list = Book.objects.filter(copies__gt=0)
     filtered_orders = Order.objects.filter(owner = request.user.profile, is_ordered=False)
     current_order_products = []
     if filtered_orders.exists():
@@ -128,6 +128,12 @@ def checkout(request):
 
 @login_required()
 def process_payment(request , order_id):
+    order = Order.objects.get(id=order_id)
+    for item in order.items.all():
+        book = Book.objects.get(name=item.product.name)
+        book_copies = book.copies - item.amount
+        Book.objects.filter(name=item.product.name).update(copies=book_copies)
+
     return redirect(reverse('store:update_records',kwargs ={
         'order_id':order_id})
                     )
@@ -136,7 +142,7 @@ def process_payment(request , order_id):
 @login_required()
 def update_transaction_records(request, order_id):
     order_to_purchase = Order.objects.filter(pk=order_id).first()
-    order_to_purchase.is_orderd = True
+    order_to_purchase.is_ordered = True
     order_to_purchase.date_order = datetime.datetime.now()
     order_to_purchase.save()
 

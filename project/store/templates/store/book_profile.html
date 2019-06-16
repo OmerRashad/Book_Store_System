@@ -1,43 +1,45 @@
 {% extends "blog/base.html" %}
 {% block content %}
 
-<div class="site-section" id="products-section">
+<div class="site-section bg-light">
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-md-6 text-center">
-            <h3 class="section-sub-title">{{object.name}}</h3>
 
-            </div>
+            <h2 class="section-title mb-3">{{object.name}}</h2>
+          </div>
         </div>
-        <div class="row">
+        <div class="bg-white py-4 mb-4">
+          <div class="row mx-4 my-4 product-item-2 align-items-start">
+            <div class="col-md-6 mb-5 mb-md-0">
+              <img style="height:550px;width:400px;" src="{{ object.cover.url }}" alt="Image" class="img-fluid">
+            </div>
 
-          <div class="col-lg-4 col-md-6 mb-5">
-            <div class="product-item">
-              <figure >
-                <img style="width:300;height:300;padding:auto;" src="{{ object.cover.url }}" alt="Image" class="img-fluid">
-              </figure>
-              <div class="px-4">
-                <h3><a href="#">{{object.name}}</a></h3>
-                <!--<div class="mb-3">-->
-                  <!--<span class="meta-icons mr-3"><a href="#" class="mr-2"><span class="icon-star text-warning"></span></a> 5.0</span>-->
-                  <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
-                <!--</div>-->
-                <p class="mb-4"><small>Book Author : </small>{{object.author}}</p>
-                <p class="mb-4"><small>Book Price : </small>{{object.price}}</p>
-                  <p class="mb-4"><small>Book Description : </small>
-                      <br/>
-                      {{object.description}}
-                  </p>
-                <div>
-                  <a href="#" class="btn btn-black mr-1 rounded-0">Cart</a>
-                  <a href="{% url 'store:addToLikes' object.id %}" class="btn btn-black btn-outline-black ml-1 rounded-0">Add to like</a>
+            <div  class="col-md-5 ml-auto product-title-wrap">
 
-                </div>
+              <h3 class="text-black mb-4 font-weight-bold">More About {{object.name}}</h3>
+              <p class="mb-4">{{ object.description }}</p>
+
+              <div class="mb-4">
+                <h3 class="text-black font-weight-bold h5">Price :</h3>
+                <div class="price">{{object.price}}</div>
               </div>
+
+              <div class="mb-4">
+                <h3 class="text-black font-weight-bold h5">Author :</h3>
+                <div class="price">{{object.author}}</div>
+              </div>
+
+
+              <p>
+                <a href="#" class="btn btn-black rounded-0 d-block d-lg-inline-block">Cart</a>
+                <a href="{% url 'store:addToLikes' object.id %}" class="btn btn-black btn-outline-black rounded-0 d-block mb-2 mb-lg-0 d-lg-inline-block">Like</a>
+              </p>
             </div>
           </div>
+        </div>
 
-          </div>
+
       </div>
     </div>
 {% endblock%}

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'chat',
     'channels',
+    'bot',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'store.apps.StoreConfig',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'chatterbot.ext.django_chatterbot',
 ]
 
 MIDDLEWARE = [
@@ -153,4 +155,15 @@ EMAIL_HOST_PASSWORD= '$Store789'
 EMAIL_USE_TLS=True
 EMAIL_USE_SSL=False
 
+CHATTERBOT = {}
+
+
+#Rest Framework
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 

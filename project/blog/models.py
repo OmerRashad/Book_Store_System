@@ -42,17 +42,18 @@ class Posts(models.Model):
         return self.title
 
 
-
 class PostForm(ModelForm):
     class Meta:
         model = Posts
         fields = ['content']
+
 
 class Comment(models.Model):
     user = models.ForeignKey(Account, default=1, on_delete=models.CASCADE)
     post = models.ForeignKey(Posts, on_delete=models.CASCADE)
     content = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
+    id = models.AutoField(primary_key=True)
 
     def __str__(self):
         return str(self.content)

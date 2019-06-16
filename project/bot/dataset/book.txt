@@ -1,0 +1,12 @@
+I want you to suggest for me a book from your store
+What category do you prefere?
+I don't know what are your categories.
+We have many category and all are interesting.
+Ok. Can you show me some of it ?
+Yes, Of course : Horror, Drama, Comedy, Childern Books, Adventure and more. If you want a specific category i can search for it and if it doesn't exist in our database you can name your book and we will add it as possible as fast to our ReadingHub-BookStore.
+Oh, Thats great if i choose a Comedy books, can you name some of your Comedy books ?
+Yes, no problem. We have a books like "The Dumber and The Dumber", "It's Good To Laugh" and they are our bestsaler.
+Good, I want to read the "It's Good To Laugh", Make the order and i will pay by cash.
+Done, Do you want anything else?
+No, Thanks thats all.
+Ok, Nice to talk to you Bye.

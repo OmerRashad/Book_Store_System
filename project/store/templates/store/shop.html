@@ -99,8 +99,15 @@
                   <!--<span class="meta-icons wishlist"><a href="#" class="mr-2"><span class="icon-heart"></span></a> 29</span>-->
                 <!--</div>-->
                 <p class="mb-4"><small>Book Author : </small>{{object.author}}</p>
-                <p class="mb-4" style="text-decoration:line-through" ><small>Book Price : </small>{{object.price}}</p>
-                <div>
+                {% if object.sale == 0.0%}
+                <p class="mb-4" ><small>Book Price : </small>{{object.price}}</p>
+                  {%else%}
+                <div class="mb-4">
+                  <p  style="text-decoration:line-through" ><small>Book Price : </small>{{object.price}}</p>
+                <p ><strong>New Price : </strong>{{object.get_sale}}</p>
+                </div>
+                    {%endif%}
+                 <div>
 
 		{% if object in user.profile.ebooks.all %}
 	            <!-- add a button here to see the product -->

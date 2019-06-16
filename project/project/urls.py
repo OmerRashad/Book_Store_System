@@ -31,6 +31,7 @@ urlpatterns = [
     path('blog/', include('blog.urls') ),
     path('', user_views.viewHome, name='blog-home'),
     path('confirmation/', user_views.confirmation, name='confirmation'),
+    path('bot/',include('bot.urls')),
     url(r'^chat/', include('chat.urls')),
     path('store/', include('store.urls')),
 ]

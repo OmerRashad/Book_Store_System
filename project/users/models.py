@@ -30,6 +30,9 @@ class Book(models.Model):
     def __str__(self):
         return self.name
 
+    def get_sale(self):
+        return (self.price * (self.sale / 100))
+
 
 class Profile(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
